@@ -5,7 +5,7 @@ Public content for the Pisga Trivia app, served at https://mnzaguri-a11y.github.
 - `packs/<id>.json`: a question pack. Pack id example: `2026-w46`. Question ids must start with `<pack id>-` (for example `2026-w46-001`). Each question has the bundled-bank schema plus `cat` (one of: gaming, movies, brands, club, science, world, pop, israel, food).
 - `packs/index.json`: pack ids in release order, oldest first. The last one is shown in the app as "חדש השבוע". Removing an id pulls that pack from every device on its next launch.
 - `fixes.json`: corrections to existing questions, e.g. `{"id":"science-014","why":"..."}` or `{"id":"food-120","remove":true}`. Overridable fields: q, opts (opts[0] is correct), hint, why, lvl, type.
-- `config.json`: remote config (e.g. ad frequency, later).
+- `config.json`: remote config. `ads` overrides ad behaviour without an app update. Defaults: `{"on":true,"freeDays":2,"steps":[[7,12],[100000,8]],"floor":6,"gapSec":90,"upsellEvery":3}`. `steps` is [[days since install below which, show one interstitial every N questions], ...]; `floor` is the minimum N (at least 3). Add `"units":{"inter":"ca-app-pub-…/…","reward":"ca-app-pub-…/…"}` to switch from Google's test ads to real ad units. `"on":false` turns all ads off.
 - `index.html`, `privacy.html`: the public site. `privacy.html` is a copy of `app_extra/privacy.html` in the app repo; keep both in sync.
 
 ## Publishing (signing happens on the owner's PC)
