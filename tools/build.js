@@ -1,8 +1,8 @@
-// Builds the public site into _site/: validates packs, writes a signed manifest.
-// Usage: PISGA_SIGN_KEY="<PKCS8 PEM>" node tools/build.js   (or PISGA_SIGN_KEY_FILE=path)
+// Builds the public site into site/ (committed): validates packs, writes a signed manifest.
+// Usage (on the owner's PC, the key never leaves it): PISGA_SIGN_KEY_FILE=../extracted/pisga-trivia/secrets/pack-signing-key.pem node tools/build.js
 // The app trusts content only if manifest.sig verifies against the public key embedded in engine.html.
 const fs=require('fs'),path=require('path'),crypto=require('crypto');
-const R=path.join(__dirname,'..'),OUT=path.join(R,'_site');
+const R=path.join(__dirname,'..'),OUT=path.join(R,'site');
 const CATS=['gaming','movies','brands','club','science','world','pop','israel','food'];
 const TYPES=['knowledge','estimate','logic','emoji','which'];
 const ID=/^[A-Za-z0-9_-]{1,40}$/;
@@ -56,4 +56,4 @@ const sig=crypto.sign('sha256',Buffer.from(manifest,'utf8'),{key:pem,dsaEncoding
 fs.writeFileSync(path.join(OUT,'manifest.json'),manifest);
 fs.writeFileSync(path.join(OUT,'manifest.sig'),sig);
 for(const f of ['index.html','privacy.html','.nojekyll'])fs.copyFileSync(path.join(R,f),path.join(OUT,f));
-console.log('built _site:',packs.length,'packs,',fixes.length,'fixes');
+console.log('built site/:',packs.length,'packs,',fixes.length,'fixes');

@@ -8,6 +8,15 @@ Public content for the Pisga Trivia app, served at https://mnzaguri-a11y.github.
 - `config.json`: remote config (e.g. ad frequency, later).
 - `index.html`, `privacy.html`: the public site. `privacy.html` is a copy of `app_extra/privacy.html` in the app repo; keep both in sync.
 
-On every push to `main`, `.github/workflows/pages.yml` runs `tools/build.js`. The script validates everything, writes `manifest.json` (pack list with SHA-256 hashes, plus fixes and config) and signs it with the `PISGA_SIGN_KEY` secret (ECDSA P-256) into `manifest.sig`, then deploys to GitHub Pages. The app accepts content only when the signature verifies against the public key built into it. On pull requests the workflow only validates.
+## Publishing (signing happens on the owner's PC)
+1. Edit packs, `fixes.json` or `config.json`.
+2. Run on the PC:
+   ```
+   PISGA_SIGN_KEY_FILE=../extracted/pisga-trivia/secrets/pack-signing-key.pem node tools/build.js
+   ```
+   The script validates everything, writes `site/` (the public files plus `manifest.json`, with each pack's SHA-256, fixes and config) and signs the manifest (ECDSA P-256) into `site/manifest.sig`.
+3. Commit everything, `site/` included, and push.
 
-The private signing key is kept in the app repo under `secrets/pack-signing-key.pem` (git-ignored) and must be backed up. Losing it means shipping an app update with a new public key.
+On push, `.github/workflows/pages.yml` runs `tools/verify.js`. It checks the signature against the app's public key and every pack hash, and only then deploys `site/` to GitHub Pages. Unsigned or edited files fail the check and are not published. The app runs the same checks again on the device.
+
+The private signing key never leaves the PC. It is in the app repo folder under `secrets/pack-signing-key.pem` (git-ignored) and must be backed up. Losing it means shipping an app update with a new public key.

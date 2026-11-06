@@ -23,20 +23,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      # On pull requests this only validates; the signing key is not available to PRs.
-      - name: Validate and sign
-        env:
-          PISGA_SIGN_KEY: ${{ github.event_name != 'pull_request' && secrets.PISGA_SIGN_KEY || '' }}
-        run: |
-          if [ -z "$PISGA_SIGN_KEY" ]; then
-            PISGA_SIGN_KEY="$(openssl ecparam -name prime256v1 -genkey -noout | openssl pkcs8 -topk8 -nocrypt)" node tools/build.js
-          else
-            node tools/build.js
-          fi
+      # site/ is built and signed on the owner's PC (tools/build.js); here it is only verified.
+      - name: Verify signed site
+        run: node tools/verify.js
       - if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: site
 
   deploy:
     if: github.event_name != 'pull_request'

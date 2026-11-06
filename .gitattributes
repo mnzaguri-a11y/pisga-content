@@ -1,0 +1,2 @@
+# Signed files must reach Pages byte-for-byte; never convert line endings.
+site/** -text
