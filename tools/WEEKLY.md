@@ -11,7 +11,7 @@ Paths (all under `C:\Users\Mtnza\Desktop\Gamik Studio\PSAGOT TREVIA`):
 ## 1. Prepare (no approval needed)
 1. Pack id: the ISO week, `YYYY-wWW` (e.g. `2026-w46`). If that id already exists in `packs/index.json`, stop and tell the owner.
 2. Read `SCHEMA.md` and 2–3 recent packs to match the style. Write about 60 questions to `packs/<id>.json`:
-   - Shape: `{"id","title","questions":[...]}`. Each question has the bank fields plus `cat` (gaming, movies, brands, club, science, world, pop, israel, food). Question ids are `<pack id>-001` and up.
+   - Shape: `{"id","title","questions":[...]}`. Each question has the bank fields plus `cat` (gaming, movies, brands, club, science, world, pop, israel, food, idioms). Question ids are `<pack id>-001` and up.
    - Mix: about 6–7 per category. Levels roughly 1:8, 2:12, 3:20, 4:13, 5:7.
    - Title: a short Hebrew name, optionally a theme (holiday, season, current sports event). It is shown on the "חדש השבוע" tile.
    - Owner's rules: no round-number correct answers in numeric questions, with distractors close but fair; emoji questions at most 1 in 7; `why` must be accurate and teach something; never show question counts; hints must not give the answer away; exactly one defensible correct answer.

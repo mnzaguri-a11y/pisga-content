@@ -2,7 +2,7 @@
 
 Public content for the Pisga Trivia app, served at https://mnzaguri-a11y.github.io/pisga-content/
 
-- `packs/<id>.json`: a question pack. Pack id example: `2026-w46`. Question ids must start with `<pack id>-` (for example `2026-w46-001`). Each question has the bundled-bank schema plus `cat` (one of: gaming, movies, brands, club, science, world, pop, israel, food).
+- `packs/<id>.json`: a question pack. Pack id example: `2026-w46`. Question ids must start with `<pack id>-` (for example `2026-w46-001`). Each question has the bundled-bank schema plus `cat` (one of: gaming, movies, brands, club, science, world, pop, israel, food, idioms; type `complete` is a sentence with `____` to fill).
 - `packs/index.json`: pack ids in release order, oldest first. The last one is shown in the app as "חדש השבוע". Removing an id pulls that pack from every device on its next launch.
 - `fixes.json`: corrections to existing questions, e.g. `{"id":"science-014","why":"..."}` or `{"id":"food-120","remove":true}`. Overridable fields: q, opts (opts[0] is correct), hint, why, lvl, type.
 - `config.json`: remote config. `ads` overrides ad behaviour without an app update. Defaults: `{"on":true,"freeDays":0,"by":"q","steps":[[60,15],[200,7],[1500,2],[1e9,1]],"floor":1,"gapSec":30,"upsellEvery":2,"price":"$1"}`. `steps` is [[limit, show one interstitial every N questions], ...]; with `by:"q"` the limit is lifetime answered questions, with `by:"days"` days since install. `gapSec` is the minimum time between ads; `upsellEvery` shows the remove-ads offer after every N-th ad; `price` is the label used when the store price has not loaded. Add `"units":{"inter":"ca-app-pub-…/…","reward":"ca-app-pub-…/…"}` to switch from Google test ads to real ad units. `"on":false` turns all ads off.

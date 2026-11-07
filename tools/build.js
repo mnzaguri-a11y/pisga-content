@@ -3,8 +3,8 @@
 // The app trusts content only if manifest.sig verifies against the public key embedded in engine.html.
 const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const R=path.join(__dirname,'..'),OUT=path.join(R,'site');
-const CATS=['gaming','movies','brands','club','science','world','pop','israel','food'];
-const TYPES=['knowledge','estimate','logic','emoji','which'];
+const CATS=['gaming','movies','brands','club','science','world','pop','israel','food','idioms'];
+const TYPES=['knowledge','estimate','logic','emoji','which','complete'];
 const ID=/^[A-Za-z0-9_-]{1,40}$/;
 let errors=0;const err=m=>{console.log('ERROR',m);errors++;};
 const read=f=>JSON.parse(fs.readFileSync(path.join(R,f),'utf8'));
