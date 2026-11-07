@@ -3,7 +3,7 @@
 // The app trusts content only if manifest.sig verifies against the public key embedded in engine.html.
 const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const R=path.join(__dirname,'..'),OUT=path.join(R,'site');
-const CATS=['gaming','movies','brands','club','science','world','pop','israel','food','idioms'];
+const CATS=['gaming','movies','brands','club','science','world','pop','israel','food','idioms','ai','lawtech'];
 const TYPES=['knowledge','estimate','logic','emoji','which','complete'];
 const ID=/^[A-Za-z0-9_-]{1,40}$/;
 let errors=0;const err=m=>{console.log('ERROR',m);errors++;};
@@ -22,6 +22,8 @@ function checkQ(x,p){
   }
   if(typeof x.hint!=='string'||!x.hint||x.hint.length>200)err(p+' hint');
   if(typeof x.why!=='string'||x.why.length<15||x.why.length>600)err(p+' why');
+  if(x.more!==undefined&&(typeof x.more!=='string'||x.more.length<60||x.more.length>1500))err(p+' more (60-1500 chars)');
+  if(x.say!==undefined&&(typeof x.say!=='string'||!x.say||x.say.length>300))err(p+' say');
 }
 
 // packs: listed in packs/index.json in release order (oldest first)
