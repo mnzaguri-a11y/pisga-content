@@ -1,1 +1,1 @@
-{"v":1,"generated":"2026-11-07T00:25:39.905Z","packs":[{"id":"2026-w45","title":"שבוע ראשון: מכל הבא ליד","file":"packs/2026-w45.json","n":62,"sha256":"1f3a8182def28c98e32b06d53a0a22d243ec21b4aef52bd2337d38d83a85ad88"}],"fixes":[],"config":{"ads":{"freeDays":0,"steps":[[100000,3]],"floor":3,"gapSec":20,"upsellEvery":3}}}
+{"v":1,"generated":"2026-11-07T10:12:32.800Z","packs":[{"id":"2026-w45","title":"שבוע ראשון: מכל הבא ליד","file":"packs/2026-w45.json","n":62,"sha256":"1f3a8182def28c98e32b06d53a0a22d243ec21b4aef52bd2337d38d83a85ad88"}],"fixes":[],"config":{}}
